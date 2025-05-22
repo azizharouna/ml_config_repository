@@ -1,7 +1,7 @@
 import pytest
 import yaml
 from pathlib import Path
-from ..core.manager import UseCaseManager
+from ml_config_repository.core.manager import UseCaseManager
 
 class TestIntegrationWorkflows:
     @pytest.fixture

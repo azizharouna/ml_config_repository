@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
 from unittest.mock import patch
-from ..core.manager import UseCaseManager, DataValidator
+from ml_config_repository.core.manager import UseCaseManager, DataValidator
 
 class TestUseCaseManager:
     def setup_method(self):
