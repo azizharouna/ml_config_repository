@@ -1,0 +1,23 @@
+# Ecommerce product recommendations config
+model: XGBoost
+version: 1.2.0
+
+parameters:
+  max_depth: 6
+  learning_rate: 0.1
+  subsample: 0.8
+  colsample_bytree: 0.8
+
+data_requirements:
+  min_samples: 5000
+  feature_types:
+    - numerical
+    - categorical
+    - text_embedding
+
+metadata:
+  last_tested: 2024-05-15
+  owner: ecommerce-team
+  performance:
+    roc_auc: 0.92
+    precision: 0.85

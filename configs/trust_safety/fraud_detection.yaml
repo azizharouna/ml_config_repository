@@ -1,0 +1,28 @@
+# Fraud detection configuration
+model: RandomForest
+version: 2.1.0
+
+parameters:
+  n_estimators: 200
+  max_depth: 12
+  class_weight: balanced
+  max_features: 0.7
+
+data_requirements:
+  min_samples: 10000
+  feature_types:
+    - numerical
+    - categorical
+    - transaction_metadata
+  required_columns:
+    - amount
+    - user_id
+    - ip_address
+
+metadata:
+  last_tested: 2024-05-18
+  owner: trust-safety-team
+  performance:
+    recall: 0.95
+    precision: 0.88
+    f1: 0.91
