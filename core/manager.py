@@ -34,22 +34,41 @@ class UseCaseManager:
 
 
 class DataValidator:
-    """Validates data against configuration requirements"""
+    """Validates data against configuration requirements with detailed error reporting"""
     
     @staticmethod
     def validate(config: dict, data_profile: dict) -> bool:
         requirements = config.get('data_requirements', {})
+        errors = []
         
         # Check minimum samples
         if 'min_samples' in requirements:
-            if data_profile.get('sample_size', 0) < requirements['min_samples']:
-                return False
+            actual_samples = data_profile.get('sample_size', 0)
+            if actual_samples < requirements['min_samples']:
+                errors.append(
+                    f"Sample size too small (needs {requirements['min_samples']}, got {actual_samples})"
+                )
                 
         # Check feature types
         if 'feature_types' in requirements:
             available_types = set(data_profile.get('feature_types', []))
             required_types = set(requirements['feature_types'])
-            if not required_types.issubset(available_types):
-                return False
+            missing_types = required_types - available_types
+            if missing_types:
+                errors.append(f"Missing feature types: {', '.join(missing_types)}")
                 
+        if errors:
+            raise ValueError("\n".join([
+                "Data validation failed:",
+                *[f"- {error}" for error in errors]
+            ]))
         return True
+        
+    @staticmethod
+    def get_requirements(config: dict) -> dict:
+        """Returns human-readable requirements"""
+        reqs = config.get('data_requirements', {})
+        return {
+            'minimum_samples': reqs.get('min_samples', 'Not specified'),
+            'required_feature_types': reqs.get('feature_types', [])
+        }
