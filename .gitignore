@@ -1,2 +1,26 @@
+# Python cache and build files
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*.egg-info/
+*.egg
+# Python cache directories
+*__pycache__/
+tests/**/__pycache__/
+*/**/__pycache__/
+build/
+dist/
+*.so
+.Python
+
+# Environments
 .venv
 .env
+
+# IDE specific files
+.idea/
+.vscode/
+tests/unit/__pycache__/test_manager.cpython-312-pytest-7.4.0.pyc
+tests/integration/__pycache__/test_workflows.cpython-312-pytest-7.4.0.pyc
+.coverage

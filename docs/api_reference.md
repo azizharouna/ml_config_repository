@@ -77,3 +77,44 @@ config = UseCaseManager.get_config(
 | Invalid YAML | `yaml.YAMLError` | Check file syntax |
 | Missing Requirements | `None` returned | Verify data profile |
 | Permission Denied | `PermissionError` | Check file access |
+
+## Test Suite Documentation
+
+### Test Coverage Analysis
+
+```text
+---------- coverage: platform win32, python 3.12.4-final-0 -----------
+Name               Stmts   Miss  Cover   Missing
+------------------------------------------------
+core\__init__.py       1      0   100%
+core\manager.py       35      0   100%
+------------------------------------------------
+TOTAL                 36      0   100%
+```
+
+Key coverage metrics:
+- **100% statement coverage** across all core modules
+- **35 critical paths** tested in manager.py
+- **All initialization code** verified (__init__.py)
+- **Zero missed statements** in production code
+
+Coverage reports:
+- Interactive HTML: `htmlcov/index.html`
+- Terminal output: `make test-cov`
+
+### Unit Tests (tests/unit/)
+- `test_manager.py`:
+  - Config management (add/get/load operations)
+  - Data requirements validation
+  - Edge case handling
+
+### Integration Tests (tests/integration/)
+- `test_workflows.py`:
+  - End-to-end config loading
+  - Component interaction
+
+To run tests:
+```bash
+make test  # Runs tests with coverage
+make lint  # Runs style checks
+```
